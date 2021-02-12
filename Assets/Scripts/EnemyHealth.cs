@@ -5,8 +5,12 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int HP = 10;
+    [SerializeField] ParticleSystem enemyHitEffect;
+    [SerializeField] ParticleSystem deathEffect;
 
-    // Start is called before the first frame update
+    public ParticleSystem GetHitEffect() {
+        return enemyHitEffect;
+    }
 
     public void InflictDamage(int dmg) {
         HP -= dmg;

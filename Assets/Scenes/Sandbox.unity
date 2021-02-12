@@ -1010,6 +1010,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4364197914336028687, guid: 2a2e958d416e249429d0c0acc60e964a, type: 3}
+      propertyPath: hitEffectVFX
+      value: 
+      objectReference: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
+    - target: {fileID: 4364197914336028687, guid: 2a2e958d416e249429d0c0acc60e964a, type: 3}
+      propertyPath: muzzleFlashVFX
+      value: 
+      objectReference: {fileID: 3862180581012855461, guid: e18c9717a27f61f45ae65c383c04d7f3, type: 3}
+    - target: {fileID: 4364197914336028687, guid: 2a2e958d416e249429d0c0acc60e964a, type: 3}
+      propertyPath: defaultHitEffectVFX
+      value: 
+      objectReference: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a2e958d416e249429d0c0acc60e964a, type: 3}
 --- !u!1001 &8548886730280827746
@@ -1019,6 +1031,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8009113232727976803, guid: 699fb84bef07d924ba1c0ffe8eb6fe1f, type: 3}
+      propertyPath: enemyHitEffect
+      value: 
+      objectReference: {fileID: 8203332753364289413, guid: f7a9b398a2c3af14eb3b008e9d2f9380, type: 3}
     - target: {fileID: 8548886728967349601, guid: 699fb84bef07d924ba1c0ffe8eb6fe1f, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1027,6 +1043,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 283201605}
+    - target: {fileID: 8548886728967349607, guid: 699fb84bef07d924ba1c0ffe8eb6fe1f, type: 3}
+      propertyPath: m_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548886728967349607, guid: 699fb84bef07d924ba1c0ffe8eb6fe1f, type: 3}
+      propertyPath: m_Acceleration
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8548886728967349611, guid: 699fb84bef07d924ba1c0ffe8eb6fe1f, type: 3}
       propertyPath: m_RootOrder
       value: 3
