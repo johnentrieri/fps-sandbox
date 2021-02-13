@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3862180581012855461}
   - component: {fileID: 4385343744473691377}
   m_Layer: 0
-  m_Name: MuzzleFlashVFX
+  m_Name: Muzzle Flash VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6211161300044512051}
   serializedVersion: 7
-  lengthInSec: 0.1
+  lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0

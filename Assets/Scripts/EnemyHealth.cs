@@ -24,5 +24,6 @@ public class EnemyHealth : MonoBehaviour
     private void ProcessDeath() {
         HP = 0;
         Destroy(gameObject);
+        GetComponentInParent<EnemyManager>().EnemyDeathHandler();
     }
 }

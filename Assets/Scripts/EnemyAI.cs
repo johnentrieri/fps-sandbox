@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
     [SerializeField] float chaseRange = 10.0f;
     [SerializeField] float turnSpeed = 30.0f;
     [SerializeField] float disengageDistance = 30.0f;
@@ -17,8 +16,11 @@ public class EnemyAI : MonoBehaviour
 
     private Animator animator;
 
+    private Transform target;
+
     void Start()
     {
+        target = FindObjectOfType<PlayerHealth>().transform.parent.transform;
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         Idle();
