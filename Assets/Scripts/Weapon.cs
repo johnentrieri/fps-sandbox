@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit,weaponRange)) {            
             
-            EnemyHealth enemyHealth = hit.transform.GetComponent<EnemyHealth>();      
+            EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();      
             if (enemyHealth) { 
                 ProcessEnemyHit(enemyHealth, hit);
             } else {
@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
     }
 
     private void ProcessEnemyHit(EnemyHealth enemyHealth, RaycastHit hit) {
-        EnemyAI enemyAI = hit.transform.GetComponent<EnemyAI>();
+        EnemyAI enemyAI = hit.transform.GetComponentInParent<EnemyAI>();
         if (enemyAI) { enemyAI.isProvoked = true; }
 
         enemyHealth.InflictDamage(weaponDamage);
