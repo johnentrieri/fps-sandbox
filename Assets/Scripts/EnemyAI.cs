@@ -7,7 +7,9 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] float chaseRange = 10.0f;
+    [SerializeField] float turnSpeed = 30.0f;
     [SerializeField] float disengageDistance = 30.0f;
+    [SerializeField] int enemyDamage = 1;
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
@@ -25,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         distanceToTarget = Vector3.Distance(transform.position,target.position);
-        Debug.Log(distanceToTarget);
+        //Debug.Log(distanceToTarget);
 
         if (isProvoked) { EngageTarget(); }
         else if (distanceToTarget <= chaseRange) { isProvoked = true; }
@@ -39,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     private void EngageTarget() {
+        FaceTarget();
         if (distanceToTarget <= navMeshAgent.stoppingDistance) { AttackTarget(); }
         else if (distanceToTarget >= disengageDistance) { Idle(); }
         else { ChaseTarget(); }
@@ -46,6 +49,12 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget() {
         animator.SetBool("attack",true);
+    }
+
+    private void FaceTarget () {
+        Vector3 targetDirection = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(targetDirection.x,0,targetDirection.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     private void ChaseTarget() {
@@ -58,5 +67,9 @@ public class EnemyAI : MonoBehaviour
         isProvoked = false;
         navMeshAgent.SetDestination(transform.position);
         animator.SetTrigger("idle");    
+    }
+
+    private void DamagePlayer() {
+        target.GetComponentInChildren<PlayerHealth>().InflictDamage(enemyDamage);
     }
 }
