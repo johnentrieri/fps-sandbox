@@ -37,9 +37,6 @@ public class Weapon : MonoBehaviour
     }
 
     private void ProcessEnemyHit(EnemyHealth enemyHealth, RaycastHit hit) {
-        EnemyAI enemyAI = hit.transform.GetComponentInParent<EnemyAI>();
-        if (enemyAI) { enemyAI.isProvoked = true; }
-
         enemyHealth.InflictDamage(weaponDamage);
         ParticleSystem enemyHitEffect = enemyHealth.GetHitEffect();
         float hitEffectDuration = enemyHitEffect.main.duration;

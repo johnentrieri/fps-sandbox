@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
-    public bool isProvoked = false;
+    private bool isProvoked = false;
 
     private Animator animator;
 
@@ -38,6 +38,10 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,chaseRange);
+    }
+
+    public void Provoke() {
+        isProvoked = true;
     }
 
     private void EngageTarget() {
@@ -72,4 +76,5 @@ public class EnemyAI : MonoBehaviour
     private void DamagePlayer() {
         target.GetComponentInChildren<PlayerHealth>().InflictDamage(enemyDamage);
     }
+
 }

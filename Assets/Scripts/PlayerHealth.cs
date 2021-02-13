@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int HP = 10;
+    [SerializeField] Canvas gameOverCanvas;
+
+    void Start() {
+        gameOverCanvas.enabled = false;
+    }
 
     public void InflictDamage(int dmg) {
         HP -= dmg;
@@ -16,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void ProcessDeath() {
         HP = 0;
-        Debug.Log("You Have Died!");
+        gameOverCanvas.enabled = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

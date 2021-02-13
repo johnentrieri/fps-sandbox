@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void InflictDamage(int dmg) {
         HP -= dmg;
+        GetComponent<EnemyAI>().Provoke();
 
         if (HP <= 0) {
             ProcessDeath();
