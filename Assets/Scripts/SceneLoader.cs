@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public void ReloadGame() {
-        SceneManager.LoadScene(0);
         Time.timeScale = 1;
+        SceneManager.LoadScene(0);        
         Cursor.visible = false;
     }
     
     public void QuitGame() {
+        Time.timeScale = 1;
         Application.Quit();
     }
 }
