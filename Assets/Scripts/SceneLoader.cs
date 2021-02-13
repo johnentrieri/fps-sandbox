@@ -13,6 +13,8 @@ public class SceneLoader : MonoBehaviour
     
     public void QuitGame() {
         Time.timeScale = 1;
-        Application.Quit();
+        //TODO - For some reason this 'Application.Quit' is causing the game to crash when you hit PlayAgain.
+        //       Commenting Out as a workaround - Use Alt+F4 to Quit the game.
+        //Application.Quit();        
     }
 }
