@@ -12,30 +12,39 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem defaultHitEffectVFX;
     [SerializeField] Ammo ammo;
     private Camera FPSCamera;
-    private bool isShooting = false;
+    private bool isReloading = false;
 
     void Start() {
         FPSCamera = Camera.main;
-        isShooting = false;
     }
+
     void Update()
     {
         if (Input.GetAxis("Fire1") == 1) {
             if (ammo.GetAmmoAmount() > 0) {
-                StartCoroutine(Shoot());
+                Shoot();
             }
         }
     }
 
-    private IEnumerator Shoot() {
-        if (!isShooting) {
-            isShooting = true;
-            PlayMuzzleFlash();
-            ProcessRaycast();
-            ammo.SubtractAmmo(1);
-            yield return new WaitForSeconds(timeBetweenShots);
-            isShooting = false;
+    void OnEnable() {
+        if (isReloading) {
+            StartCoroutine(Reload());
         }
+    }
+
+    private void Shoot() {
+        if (isReloading) { return; }
+        PlayMuzzleFlash();
+        ProcessRaycast();
+        ammo.SubtractAmmo(1);
+        StartCoroutine(Reload());
+    }
+
+    private IEnumerator Reload() {
+        isReloading = true;
+        yield return new WaitForSeconds(timeBetweenShots);
+        isReloading = false;
     }
 
     private void ProcessRaycast() {

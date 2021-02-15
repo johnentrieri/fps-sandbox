@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     private void ProcessWin() {
         winnerCanvas.enabled = true;
         Time.timeScale = 0;
+        FindObjectOfType<WeaponSelect>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         HP = 0;
         gameOverCanvas.enabled = true;
         Time.timeScale = 0;
+        FindObjectOfType<WeaponSelect>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
