@@ -36,4 +36,11 @@ public class WeaponSelect : MonoBehaviour
 
         weapons[activeWeaponIndex].gameObject.SetActive(true);
     }
+
+    private void ActivateWeapon(int index)
+    {
+        weapons[activeWeaponIndex].gameObject.SetActive(false);
+        activeWeaponIndex = index;
+        weapons[activeWeaponIndex].gameObject.SetActive(true);        
+    }
 }
