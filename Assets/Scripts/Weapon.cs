@@ -20,11 +20,11 @@ public class Weapon : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetAxis("Fire1") == 1) {
             if (ammo.GetAmmoAmount() > 0) {
                 StartCoroutine(Shoot());
             }
-        };
+        }
     }
 
     private IEnumerator Shoot() {

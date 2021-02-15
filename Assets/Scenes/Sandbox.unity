@@ -3467,6 +3467,10 @@ PrefabInstance:
       propertyPath: weaponDamage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -6124270076366724206, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
+      propertyPath: timeBetweenShots
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2893190293037082437, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
       propertyPath: m_RootOrder
       value: 1

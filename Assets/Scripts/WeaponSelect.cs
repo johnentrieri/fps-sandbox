@@ -20,7 +20,7 @@ public class WeaponSelect : MonoBehaviour
 
     void Update() {
         ProcessScrollWheel();
-        if (Input.GetButtonDown("Fire3")) { CycleToNextWeapon(); }
+        if (Input.GetButtonDown("WeaponCycle")) { CycleToNextWeapon(); }
         if (Input.GetButtonDown("Weapon1")) { ActivateWeapon(0); }
         if (Input.GetButtonDown("Weapon2")) { ActivateWeapon(1); }
         if (Input.GetButtonDown("Weapon3")) { ActivateWeapon(2); }

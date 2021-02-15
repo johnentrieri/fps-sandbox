@@ -26,13 +26,13 @@ public class WeaponZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2")) {
+        if (Input.GetAxis("Fire2") == 1) {
             ZoomIn();
-        };
+        }
 
-        if (Input.GetButtonUp("Fire2")) {
+        if (Input.GetAxis("Fire2") == 0) {
             ZoomOut();
-        };
+        }
     }
 
     private void ZoomIn() {
