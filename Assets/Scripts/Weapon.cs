@@ -5,22 +5,29 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Camera FPSCamera;
     [SerializeField] float weaponRange = 100.0f;
     [SerializeField] int weaponDamage = 1;
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] ParticleSystem defaultHitEffectVFX;
+    [SerializeField] Ammo ammo;
+    private Camera FPSCamera;
 
+    void Start() {
+        FPSCamera = Camera.main;
+    }
     void Update()
     {
         if (Input.GetButtonDown("Fire1")) {
-            Shoot();
+            if (ammo.GetAmmoAmount() > 0) {
+                Shoot();
+            }
         };
     }
 
     private void Shoot() {
         PlayMuzzleFlash();
         ProcessRaycast();
+        ammo.SubtractAmmo(1);
     }
 
     private void ProcessRaycast() {
