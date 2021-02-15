@@ -19,9 +19,16 @@ public class WeaponSelect : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetButtonDown("Fire3")) {
-            CycleToNextWeapon();
-        }
+        ProcessScrollWheel();
+        if (Input.GetButtonDown("Fire3")) { CycleToNextWeapon(); }
+        if (Input.GetButtonDown("Weapon1")) { ActivateWeapon(0); }
+        if (Input.GetButtonDown("Weapon2")) { ActivateWeapon(1); }
+        if (Input.GetButtonDown("Weapon3")) { ActivateWeapon(2); }
+    }
+
+    private void ProcessScrollWheel() {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0) { CycleToNextWeapon(); }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0) { CycleToPreviousWeapon(); }
     }
 
     private void CycleToNextWeapon()
@@ -37,10 +44,26 @@ public class WeaponSelect : MonoBehaviour
         weapons[activeWeaponIndex].gameObject.SetActive(true);
     }
 
-    private void ActivateWeapon(int index)
+    private void CycleToPreviousWeapon()
     {
         weapons[activeWeaponIndex].gameObject.SetActive(false);
+
+        if ( activeWeaponIndex == 0) {
+            activeWeaponIndex = weapons.Length - 1;
+        } else {
+            activeWeaponIndex--;
+        }
+
+        weapons[activeWeaponIndex].gameObject.SetActive(true);
+    }
+
+    private void ActivateWeapon(int index)
+    {
+        if (index >= weapons.Length) { return; }
+        if (index == activeWeaponIndex) { return; }
+
+        weapons[activeWeaponIndex].gameObject.SetActive(false);
         activeWeaponIndex = index;
-        weapons[activeWeaponIndex].gameObject.SetActive(true);        
+        weapons[activeWeaponIndex].gameObject.SetActive(true);
     }
 }

@@ -16,6 +16,7 @@ public class Weapon : MonoBehaviour
 
     void Start() {
         FPSCamera = Camera.main;
+        isShooting = false;
     }
     void Update()
     {
