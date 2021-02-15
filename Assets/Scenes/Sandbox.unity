@@ -1636,31 +1636,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &732582449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8799094782552946422, guid: fc9ab01ab45dbd1479521f9749a372e4, type: 3}
-  m_PrefabInstance: {fileID: 559753572}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &732582450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2893190293037082437, guid: fc9ab01ab45dbd1479521f9749a372e4, type: 3}
   m_PrefabInstance: {fileID: 559753572}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &732582452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732582449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5467956eeb51145438e3c440232ee0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomFOV: 40
-  zoomXSensitivity: 0.5
-  zoomYSensitivity: 0.5
 --- !u!1 &788167423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1884,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e526246f063dac646942ca27ed8b4e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAmount: 30
+  ammoSlots:
+  - ammoType: 1
+    ammoAmount: 20
+  - ammoType: 0
+    ammoAmount: 60
 --- !u!1001 &1039015470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2538,9 +2522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5467956eeb51145438e3c440232ee0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultFOV: 60
+  defaultSensitivity: 2
   zoomFOV: 30
-  zoomXSensitivity: 0.5
-  zoomYSensitivity: 0.5
+  zoomSensitivity: 0.5
 --- !u!1001 &1312194314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3480,6 +3465,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 934949436}
     - target: {fileID: -6124270076366724206, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
+      propertyPath: ammoType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6124270076366724206, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
       propertyPath: weaponRange
       value: 100
       objectReference: {fileID: 0}
@@ -3489,7 +3478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6124270076366724206, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
       propertyPath: timeBetweenShots
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2893190293037082437, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
       propertyPath: m_RootOrder

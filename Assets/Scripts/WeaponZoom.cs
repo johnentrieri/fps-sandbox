@@ -5,22 +5,20 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class WeaponZoom : MonoBehaviour
 {
-    private Camera cam;
-    private float startingFOV, startingXSensitivity, startingYSensitivity;
-    private RigidbodyFirstPersonController fpsController;
+    [SerializeField] float defaultFOV = 60.0f;
+    [SerializeField] float defaultSensitivity = 2.0f;
     [SerializeField] float zoomFOV = 30.0f;
-    [SerializeField] float zoomXSensitivity = 0.5f;
-    [SerializeField] float zoomYSensitivity = 0.5f;
+    [SerializeField] float zoomSensitivity = 0.5f;
+    private Camera cam;
+    private RigidbodyFirstPersonController fpsController;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         fpsController = GetComponentInParent<RigidbodyFirstPersonController>();
-
-        startingFOV = cam.fieldOfView;
-        startingXSensitivity = fpsController.mouseLook.XSensitivity;
-        startingYSensitivity = fpsController.mouseLook.YSensitivity;      
     }
 
     // Update is called once per frame
@@ -35,14 +33,14 @@ public class WeaponZoom : MonoBehaviour
         }
     }
 
-    private void ZoomIn() {
+    public void ZoomIn() {
         cam.fieldOfView = zoomFOV;
-        fpsController.mouseLook.XSensitivity = zoomXSensitivity;
-        fpsController.mouseLook.YSensitivity = zoomYSensitivity;
+        fpsController.mouseLook.XSensitivity = zoomSensitivity;
+        fpsController.mouseLook.YSensitivity = zoomSensitivity;
     }
-    private void ZoomOut() {
-        cam.fieldOfView = startingFOV;
-        fpsController.mouseLook.XSensitivity = startingXSensitivity;
-        fpsController.mouseLook.YSensitivity = startingYSensitivity;
+    public void ZoomOut() {
+        cam.fieldOfView = defaultFOV;
+        fpsController.mouseLook.XSensitivity = defaultSensitivity;
+        fpsController.mouseLook.YSensitivity = defaultSensitivity;
     }   
 }

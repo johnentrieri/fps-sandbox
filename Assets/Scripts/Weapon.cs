@@ -8,20 +8,23 @@ public class Weapon : MonoBehaviour
     [SerializeField] float weaponRange = 100.0f;
     [SerializeField] int weaponDamage = 1;
     [SerializeField] float timeBetweenShots = 0.2f;
+    [SerializeField] int ammoPerShot = 1;
+    [SerializeField] AmmoType ammoType;
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] ParticleSystem defaultHitEffectVFX;
-    [SerializeField] Ammo ammo;
+    private Ammo ammo;
     private Camera FPSCamera;
     private bool isReloading = false;
 
     void Start() {
         FPSCamera = Camera.main;
+        ammo = GetComponentInParent<Ammo>();
     }
 
     void Update()
     {
         if (Input.GetAxis("Fire1") == 1) {
-            if (ammo.GetAmmoAmount() > 0) {
+            if (ammo.GetAmmoAmount(ammoType) > 0) {
                 Shoot();
             }
         }
@@ -37,7 +40,7 @@ public class Weapon : MonoBehaviour
         if (isReloading) { return; }
         PlayMuzzleFlash();
         ProcessRaycast();
-        ammo.SubtractAmmo(1);
+        ammo.SubtractAmmo(ammoType,ammoPerShot);
         StartCoroutine(Reload());
     }
 

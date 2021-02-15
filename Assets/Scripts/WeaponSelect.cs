@@ -11,9 +11,15 @@ public class WeaponSelect : MonoBehaviour
     {
         weapons = GetComponentsInChildren<Weapon>();
 
-        for (int i = 1; i < weapons.Length; i++) {
-            if (i ==0) { weapons[i].gameObject.SetActive(true); }
-            else { weapons[i].gameObject.SetActive(false); }
+        for (int i = 0; i < weapons.Length; i++) {
+            if (i == 0) { 
+                weapons[i].gameObject.SetActive(true);
+            } else { 
+                WeaponZoom weaponZoom = weapons[activeWeaponIndex].GetComponent<WeaponZoom>();
+                if (weaponZoom != null) { weaponZoom.ZoomOut(); }
+
+                weapons[i].gameObject.SetActive(false);
+            }
         }
 
     }
@@ -33,6 +39,9 @@ public class WeaponSelect : MonoBehaviour
 
     private void CycleToNextWeapon()
     {
+        WeaponZoom weaponZoom = weapons[activeWeaponIndex].GetComponent<WeaponZoom>();
+        if (weaponZoom != null) { weaponZoom.ZoomOut(); }
+
         weapons[activeWeaponIndex].gameObject.SetActive(false);
 
         if ( weapons.Length == activeWeaponIndex + 1) {
@@ -46,6 +55,9 @@ public class WeaponSelect : MonoBehaviour
 
     private void CycleToPreviousWeapon()
     {
+        WeaponZoom weaponZoom = weapons[activeWeaponIndex].GetComponent<WeaponZoom>();
+        if (weaponZoom != null) { weaponZoom.ZoomOut(); }
+
         weapons[activeWeaponIndex].gameObject.SetActive(false);
 
         if ( activeWeaponIndex == 0) {
@@ -62,7 +74,10 @@ public class WeaponSelect : MonoBehaviour
         if (index >= weapons.Length) { return; }
         if (index == activeWeaponIndex) { return; }
 
+        WeaponZoom weaponZoom = weapons[activeWeaponIndex].GetComponent<WeaponZoom>();
+        if (weaponZoom != null) { weaponZoom.ZoomOut(); }
         weapons[activeWeaponIndex].gameObject.SetActive(false);
+        
         activeWeaponIndex = index;
         weapons[activeWeaponIndex].gameObject.SetActive(true);
     }
