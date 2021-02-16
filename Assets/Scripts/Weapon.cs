@@ -54,20 +54,20 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit,weaponRange)) {            
             
-            EnemyHealth enemyHealth = hit.transform.GetComponentInParent<EnemyHealth>();      
-            if (enemyHealth) { 
-                ProcessEnemyHit(enemyHealth, hit);
+            Enemy enemy = hit.transform.GetComponentInParent<Enemy>();      
+            if (enemy) { 
+                ProcessEnemyHit(enemy, hit);
             } else {
                 PlayDefaultHitEffect(hit.point);
             }                    
         }
     }
 
-    private void ProcessEnemyHit(EnemyHealth enemyHealth, RaycastHit hit) {
-        enemyHealth.InflictDamage(weaponDamage);
-        ParticleSystem enemyHitEffect = enemyHealth.GetHitEffect();
+    private void ProcessEnemyHit(Enemy enemy, RaycastHit hit) {
+        enemy.InflictDamage(weaponDamage);
+        ParticleSystem enemyHitEffect = enemy.GetHitEffect();
         float hitEffectDuration = enemyHitEffect.main.duration;
-        Destroy( Instantiate<ParticleSystem>(enemyHitEffect,hit.point,Quaternion.identity,enemyHealth.transform).gameObject, hitEffectDuration);
+        Destroy( Instantiate<ParticleSystem>(enemyHitEffect,hit.point,Quaternion.identity,enemy.transform).gameObject, hitEffectDuration);
     }
 
     private void PlayMuzzleFlash() {

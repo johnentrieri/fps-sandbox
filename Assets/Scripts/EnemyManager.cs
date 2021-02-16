@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         winnerCanvas.enabled = false;
-        numEnemies = GetComponentsInChildren<EnemyHealth>().Length;
+        numEnemies = GetComponentsInChildren<Enemy>().Length;
     }
 
     public void EnemyDeathHandler() {

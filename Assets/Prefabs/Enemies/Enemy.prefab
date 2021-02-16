@@ -5359,9 +5359,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8548886728967349611}
   - component: {fileID: 8548886728967349607}
-  - component: {fileID: 8548886728967349606}
-  - component: {fileID: 8009113232727976803}
   - component: {fileID: 1065808444}
+  - component: {fileID: 289280043796783506}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -5406,37 +5405,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8548886728967349606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8548886728967349601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 340119cea27acaf4db0be626cb58a127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chaseRange: 10
-  turnSpeed: 30
-  disengageDistance: 30
-  enemyDamage: 1
---- !u!114 &8009113232727976803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8548886728967349601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec4d0baca8a9bcf409b241c82b095b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 2
-  enemyHitEffect: {fileID: 8203332753364289413, guid: f7a9b398a2c3af14eb3b008e9d2f9380, type: 3}
-  deathEffect: {fileID: 0}
 --- !u!95 &1065808444
 Animator:
   serializedVersion: 3
@@ -5456,6 +5424,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &289280043796783506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548886728967349601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97d10123ee05c24ba5397b76f6fa079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 10
+  chaseRange: 10
+  turnSpeed: 30
+  disengageDistance: 30
+  enemyDamage: 1
+  enemyHitEffect: {fileID: 8203332753364289413, guid: f7a9b398a2c3af14eb3b008e9d2f9380, type: 3}
+  deathEffect: {fileID: 0}
 --- !u!1001 &8418293397349507817
 PrefabInstance:
   m_ObjectHideFlags: 0
