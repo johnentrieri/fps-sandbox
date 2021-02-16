@@ -40,7 +40,7 @@ public class Weapon : MonoBehaviour
         if (isReloading) { return; }
         PlayMuzzleFlash();
         ProcessRaycast();
-        ammo.SubtractAmmo(ammoType,ammoPerShot);
+        ammo.DecreaseAmmo(ammoType,ammoPerShot);
         StartCoroutine(Reload());
     }
 
