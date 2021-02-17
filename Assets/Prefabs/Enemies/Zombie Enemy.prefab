@@ -1975,9 +1975,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
-  chaseRange: 10
+  chaseRange: 100
   turnSpeed: 30
-  disengageDistance: 30
+  disengageDistance: 100
   enemyDamage: 1
   enemyHitEffect: {fileID: 8203332753364289413, guid: f7a9b398a2c3af14eb3b008e9d2f9380, type: 3}
   deathEffect: {fileID: 0}

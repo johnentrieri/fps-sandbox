@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] ParticleSystem enemyHitEffect;
     [SerializeField] ParticleSystem deathEffect;
     private NavMeshAgent navMeshAgent;
-    private Collider collider;
+    private Collider enemyCollider;
     float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
     private Animator animator;
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         target = FindObjectOfType<PlayerHealth>().transform.parent.transform;
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        collider = GetComponent<Collider>();
+        enemyCollider = GetComponent<Collider>();
         Idle();
     }
 
@@ -61,12 +61,11 @@ public class Enemy : MonoBehaviour
 
     private void ProcessDeath() {
         if (!isAlive) { return; }      
-        //Destroy(gameObject);
         animator.SetTrigger("die");
         GetComponentInParent<EnemyManager>().EnemyDeathHandler();
         isAlive = false;
         navMeshAgent.enabled = false;
-        collider.enabled = false;
+        enemyCollider.enabled = false;
     }
 
     private void EngageTarget() {
