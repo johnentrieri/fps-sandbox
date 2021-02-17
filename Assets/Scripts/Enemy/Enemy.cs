@@ -15,13 +15,16 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private Collider enemyCollider;
     float distanceToTarget = Mathf.Infinity;
+    private bool isAlive = true;
     private bool isProvoked = false;
     private Animator animator;
     private Transform target;
-    private bool isAlive = true;
+    private int startingHP;
+    
 
     void Start()
     {
+        startingHP = HP;
         target = FindObjectOfType<PlayerHealth>().transform.parent.transform;
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -47,6 +50,12 @@ public class Enemy : MonoBehaviour
     public ParticleSystem GetHitEffect() {
         return enemyHitEffect;
     }
+    public void Reanimate() {
+        animator.SetTrigger("reanimate");
+        isAlive = true;
+        navMeshAgent.enabled = true;
+        enemyCollider.enabled = true;
+    }
 
     public void InflictDamage(int dmg) {
         if (!isAlive) { return; }
@@ -62,7 +71,7 @@ public class Enemy : MonoBehaviour
     private void ProcessDeath() {
         if (!isAlive) { return; }      
         animator.SetTrigger("die");
-        GetComponentInParent<EnemyManager>().EnemyDeathHandler();
+        GetComponentInParent<EnemyManager>().EnemyDeathHandler(gameObject);
         isAlive = false;
         navMeshAgent.enabled = false;
         enemyCollider.enabled = false;
