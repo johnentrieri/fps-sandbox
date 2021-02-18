@@ -691,6 +691,65 @@ Transform:
   m_Father: {fileID: 324515358534386265}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2970045606564657121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5065829948054522244}
+  - component: {fileID: 1696413041424998358}
+  - component: {fileID: 5712009604193972248}
+  m_Layer: 0
+  m_Name: Headshot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5065829948054522244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970045606564657121}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.663, z: 0}
+  m_LocalScale: {x: 0.79756, y: 1, z: -0.69596}
+  m_Children: []
+  m_Father: {fileID: 8548886728967349611}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1696413041424998358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970045606564657121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12200992
+  m_Height: 0.24831486
+  m_Direction: 1
+  m_Center: {x: -0.0013685431, y: -0.00000011920929, z: -0.030450037}
+--- !u!114 &5712009604193972248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970045606564657121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645fa60ec5133f4459b5aa0a39eccb7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headShotMultiplier: 5
 --- !u!1 &3485498484139476456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1963,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2789383292900134613}
+  - {fileID: 5065829948054522244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1959,9 +2019,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.26
-  m_Height: 1.81
+  m_Height: 1.549801
   m_Direction: 1
-  m_Center: {x: 0, y: 0.89, z: 0}
+  m_Center: {x: 0, y: 0.7599005, z: 0}
 --- !u!114 &2242882255687601245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,10 +2034,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97d10123ee05c24ba5397b76f6fa079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  chaseRange: 100
+  HP: 5
+  chaseRange: 400
   turnSpeed: 30
-  disengageDistance: 100
+  disengageDistance: 400
   enemyDamage: 1
   enemyHitEffect: {fileID: 8203332753364289413, guid: f7a9b398a2c3af14eb3b008e9d2f9380, type: 3}
   deathEffect: {fileID: 0}

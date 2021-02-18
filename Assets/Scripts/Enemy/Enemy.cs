@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] ParticleSystem enemyHitEffect;
     [SerializeField] ParticleSystem deathEffect;
     private NavMeshAgent navMeshAgent;
+
     private Collider enemyCollider;
     float distanceToTarget = Mathf.Infinity;
     private bool isAlive = true;

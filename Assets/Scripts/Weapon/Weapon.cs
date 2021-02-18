@@ -53,18 +53,21 @@ public class Weapon : MonoBehaviour
     private void ProcessRaycast() {
         RaycastHit hit;
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit,weaponRange)) {            
-            
+            Headshot headshot = hit.transform.GetComponent<Headshot>();
             Enemy enemy = hit.transform.GetComponentInParent<Enemy>();      
-            if (enemy) { 
-                ProcessEnemyHit(enemy, hit);
+            if (headshot) {
+                int headshotDamage = weaponDamage * headshot.GetHeadshotMultiplier();
+                ProcessEnemyHit(enemy, hit, headshotDamage);
+            }else if (enemy) { 
+                ProcessEnemyHit(enemy, hit, weaponDamage);
             } else {
                 PlayDefaultHitEffect(hit.point);
             }                    
         }
     }
 
-    private void ProcessEnemyHit(Enemy enemy, RaycastHit hit) {
-        enemy.InflictDamage(weaponDamage);
+    private void ProcessEnemyHit(Enemy enemy, RaycastHit hit, int dmg) {
+        enemy.InflictDamage(dmg);
         ParticleSystem enemyHitEffect = enemy.GetHitEffect();
         float hitEffectDuration = enemyHitEffect.main.duration;
         Destroy( Instantiate<ParticleSystem>(enemyHitEffect,hit.point,Quaternion.identity,enemy.transform).gameObject, hitEffectDuration);
