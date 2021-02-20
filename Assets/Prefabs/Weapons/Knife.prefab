@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2893190293037082437}
   - component: {fileID: -6124270076366724206}
-  - component: {fileID: 1884304982}
   - component: {fileID: 617394056}
   m_Layer: 0
   m_Name: Knife
@@ -51,25 +50,8 @@ MonoBehaviour:
   timeBetweenShots: 0.5
   ammoPerShot: 1
   ammoType: 4
-  muzzleFlashVFX: {fileID: 0}
   defaultHitEffectVFX: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
   weaponName: Knife
---- !u!114 &1884304982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8799094782552946422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5467956eeb51145438e3c440232ee0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultFOV: 60
-  defaultSensitivity: 2
-  zoomFOV: 25
-  zoomSensitivity: 0.5
 --- !u!95 &617394056
 Animator:
   serializedVersion: 3

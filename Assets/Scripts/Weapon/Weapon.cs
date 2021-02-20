@@ -11,7 +11,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] float timeBetweenShots = 0.2f;
     [SerializeField] int ammoPerShot = 1;
     [SerializeField] AmmoType ammoType;
-    [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] ParticleSystem defaultHitEffectVFX;
     public string weaponName;
     private Ammo ammo;
@@ -27,16 +26,8 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("Fire1") == 1) {
-            if (ammo.GetAmmoAmount(ammoType) > 0) {
-                if (animator != null) {
-                    if ( !animator.GetBool("shoot") && !isReloading ) {
-                        animator.SetBool("shoot",true);
-                    }
-                } else {
-                    Shoot();
-                }
-            }
+        if (Input.GetAxis("Fire1") == 1) {                 
+                ProcessFiring();
         }
     }
 
@@ -46,9 +37,20 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    void ProcessFiring() {
+        if (ammo.GetAmmoAmount(ammoType) > 0) {
+            if (animator != null) {                
+                if ( !animator.GetBool("shoot") && !isReloading ) {
+                    animator.SetBool("shoot",true);
+                }
+            } else {
+                Shoot();
+            }
+        }
+    }
+
     private void Shoot() {
         if (isReloading) { return; }
-        PlayMuzzleFlash();
         ProcessRaycast();
         ammo.DecreaseAmmo(ammoType,ammoPerShot);
         StartCoroutine(Reload());
@@ -56,8 +58,10 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator Reload() {
         isReloading = true;
-        if (animator != null) { animator.SetBool("shoot",false); }
         yield return new WaitForSeconds(timeBetweenShots);
+        if (animator != null) {
+            animator.SetBool("shoot",false);
+        }
         isReloading = false;
     }
 
@@ -82,10 +86,6 @@ public class Weapon : MonoBehaviour
         ParticleSystem enemyHitEffect = enemy.GetHitEffect();
         float hitEffectDuration = enemyHitEffect.main.duration;
         Destroy( Instantiate<ParticleSystem>(enemyHitEffect,hit.point,Quaternion.identity,enemy.transform).gameObject, hitEffectDuration);
-    }
-
-    private void PlayMuzzleFlash() {
-        if (muzzleFlashVFX != null) { muzzleFlashVFX.Play(); }        
     }
 
     private void PlayDefaultHitEffect(Vector3 location) {
