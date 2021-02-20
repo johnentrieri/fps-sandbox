@@ -15,12 +15,8 @@ public class AmmoPickup : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.tag != "Player") { return; }
-        if ( AddAmmo() ) {
+        if ( ammo.IncreaseAmmo(ammoType,ammoAmount) ) {
             Destroy(gameObject);
         }
-    }
-
-    private bool AddAmmo() {
-        return ammo.IncreaseAmmo(ammoType,ammoAmount);
     }
 }

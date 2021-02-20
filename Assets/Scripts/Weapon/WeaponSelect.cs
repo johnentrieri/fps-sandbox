@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class WeaponSelect : MonoBehaviour
 {
-    private Weapon[] weapons;
+    [SerializeField] Transform weaponDirectory;
+    private List<Weapon> weapons = new List<Weapon>();
     private int activeWeaponIndex = 0;
 
     void Start()
     {
-        weapons = GetComponentsInChildren<Weapon>();
+        foreach( Weapon w in GetComponentsInChildren<Weapon>() ){
+            weapons.Add(w);
+        }
 
-        for (int i = 0; i < weapons.Length; i++) {
+        for (int i = 0; i < weapons.Count; i++) {
             if (i == 0) { 
                 weapons[i].gameObject.SetActive(true);
             } else { 
@@ -32,6 +35,16 @@ public class WeaponSelect : MonoBehaviour
         if (Input.GetButtonDown("Weapon3")) { ActivateWeapon(2); }
     }
 
+    public bool AddWeapon(Weapon weapon) {
+        foreach(Weapon w in weapons) {
+            if (weapon.weaponName == w.weaponName) { return false;}
+        }
+        Weapon spawnedWeapon = Instantiate(weapon,weaponDirectory);
+        weapons.Add(spawnedWeapon);
+        ActivateWeapon(weapons.Count-1);
+        return true;
+    }
+
     private void ProcessScrollWheel() {
         if (Input.GetAxis("Mouse ScrollWheel") > 0) { CycleToNextWeapon(); }
         if (Input.GetAxis("Mouse ScrollWheel") < 0) { CycleToPreviousWeapon(); }
@@ -44,7 +57,7 @@ public class WeaponSelect : MonoBehaviour
 
         weapons[activeWeaponIndex].gameObject.SetActive(false);
 
-        if ( weapons.Length == activeWeaponIndex + 1) {
+        if ( weapons.Count == activeWeaponIndex + 1) {
             activeWeaponIndex = 0;
         } else {
             activeWeaponIndex++;
@@ -61,7 +74,7 @@ public class WeaponSelect : MonoBehaviour
         weapons[activeWeaponIndex].gameObject.SetActive(false);
 
         if ( activeWeaponIndex == 0) {
-            activeWeaponIndex = weapons.Length - 1;
+            activeWeaponIndex = weapons.Count - 1;
         } else {
             activeWeaponIndex--;
         }
@@ -71,7 +84,7 @@ public class WeaponSelect : MonoBehaviour
 
     private void ActivateWeapon(int index)
     {
-        if (index >= weapons.Length) { return; }
+        if (index >= weapons.Count) { return; }
         if (index == activeWeaponIndex) { return; }
 
         WeaponZoom weaponZoom = weapons[activeWeaponIndex].GetComponent<WeaponZoom>();

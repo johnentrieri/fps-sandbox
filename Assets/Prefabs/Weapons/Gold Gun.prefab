@@ -4896,6 +4896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2893190293037082437}
   - component: {fileID: -6124270076366724206}
+  - component: {fileID: 5463401375555911317}
   m_Layer: 0
   m_Name: Gold Gun
   m_TagString: Untagged
@@ -4910,8 +4911,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8799094782552946422}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.07062701, z: -0, w: 0.9975028}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5499101766574429942}
@@ -4931,8 +4932,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f95789343b86e243ba4c7cd14942af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 20
-  weaponDamage: 1
+  weaponRange: 50
+  weaponDamage: 10
+  timeBetweenShots: 0.2
+  ammoPerShot: 1
+  ammoType: 1
   muzzleFlashVFX: {fileID: 2447927848734738803}
   defaultHitEffectVFX: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
-  ammo: {fileID: 0}
+  weaponName: Golden Gun
+--- !u!114 &5463401375555911317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799094782552946422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5467956eeb51145438e3c440232ee0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultFOV: 60
+  defaultSensitivity: 2
+  zoomFOV: 30
+  zoomSensitivity: 0.5

@@ -33,6 +33,10 @@ public class WeaponZoom : MonoBehaviour
         }
     }
 
+    public void SetCamera(Camera camera) {
+        cam = camera;
+    }
+
     public void ZoomIn() {
         cam.fieldOfView = zoomFOV;
         fpsController.mouseLook.XSensitivity = zoomSensitivity;

@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int HP = 10;
     [SerializeField] Canvas gameOverCanvas;
+    [SerializeField] Transform weaponDirectory;
 
     private int maxHP;
     private PlayerUIHandler playerUIHandler;

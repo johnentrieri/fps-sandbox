@@ -4849,11 +4849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f95789343b86e243ba4c7cd14942af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPSCamera: {fileID: 0}
   weaponRange: 20
   weaponDamage: 1
+  timeBetweenShots: 0.2
+  ammoPerShot: 1
+  ammoType: 0
   muzzleFlashVFX: {fileID: 2447927848734738803}
   defaultHitEffectVFX: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
+  weaponName: Pistol
 --- !u!1001 &5465683943902228765
 PrefabInstance:
   m_ObjectHideFlags: 0

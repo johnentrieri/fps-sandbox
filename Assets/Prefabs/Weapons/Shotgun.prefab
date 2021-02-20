@@ -4856,6 +4856,7 @@ MonoBehaviour:
   ammoType: 2
   muzzleFlashVFX: {fileID: 2447927848734738803}
   defaultHitEffectVFX: {fileID: 8203332753364289413, guid: b44f504ea52da3943b62e76ae31ce5cb, type: 3}
+  weaponName: Shotgun
 --- !u!114 &1884304982
 MonoBehaviour:
   m_ObjectHideFlags: 0

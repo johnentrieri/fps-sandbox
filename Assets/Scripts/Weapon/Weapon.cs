@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Weapon : MonoBehaviour
 {
+    
     [SerializeField] float weaponRange = 100.0f;
     [SerializeField] int weaponDamage = 1;
     [SerializeField] float timeBetweenShots = 0.2f;
@@ -12,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] AmmoType ammoType;
     [SerializeField] ParticleSystem muzzleFlashVFX;
     [SerializeField] ParticleSystem defaultHitEffectVFX;
+    public string weaponName;
     private Ammo ammo;
     private Camera FPSCamera;
     private bool isReloading = false;
