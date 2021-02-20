@@ -4954,7 +4954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultFOV: 60
   defaultSensitivity: 2
-  zoomFOV: 30
+  zoomFOV: 36
   zoomSensitivity: 0.5
 --- !u!95 &-5353764185863262884
 Animator:
