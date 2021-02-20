@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
         return enemyHitEffect;
     }
     public void Reanimate() {
+        HP = startingHP;
         animator.SetTrigger("reanimate");
         isAlive = true;
         navMeshAgent.enabled = true;
