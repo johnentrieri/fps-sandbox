@@ -17,11 +17,16 @@ public class Weapon : MonoBehaviour
     private Camera FPSCamera;
     private bool isReloading = false;
     private Animator animator;
+    private PlayerUIHandler playerUIHandler;
+    private int previousAmmo;
 
     void Start() {
         FPSCamera = Camera.main;
         ammo = GetComponentInParent<Ammo>();
         animator = GetComponent<Animator>();
+        playerUIHandler = FindObjectOfType<PlayerUIHandler>();
+        UpdateWeaponUI();
+        previousAmmo = ammo.GetAmmoAmount(ammoType);
     }
 
     void Update()
@@ -29,12 +34,16 @@ public class Weapon : MonoBehaviour
         if (Input.GetAxis("Fire1") == 1) {                 
                 ProcessFiring();
         }
+
+        if (previousAmmo != ammo.GetAmmoAmount(ammoType)) {
+            UpdateWeaponUI();
+            previousAmmo = ammo.GetAmmoAmount(ammoType);
+        }
     }
 
     void OnEnable() {
-        if (isReloading) {
-            StartCoroutine(Reload());
-        }
+        if (isReloading) { StartCoroutine(Reload()); }
+        UpdateWeaponUI();
     }
 
     void ProcessFiring() {
@@ -53,6 +62,7 @@ public class Weapon : MonoBehaviour
         if (isReloading) { return; }
         ProcessRaycast();
         ammo.DecreaseAmmo(ammoType,ammoPerShot);
+        UpdateWeaponUI();
         StartCoroutine(Reload());
     }
 
@@ -91,5 +101,13 @@ public class Weapon : MonoBehaviour
     private void PlayDefaultHitEffect(Vector3 location) {
         float hitEffectDuration = defaultHitEffectVFX.main.duration;
         Destroy( Instantiate<ParticleSystem>(defaultHitEffectVFX,location,Quaternion.identity).gameObject, hitEffectDuration);
+    }
+
+    private void UpdateWeaponUI() {
+        if (playerUIHandler != null) { 
+            playerUIHandler.SetWeaponName(weaponName);
+            playerUIHandler.SetRemainingAmmo( ammo.GetAmmoAmount(ammoType).ToString() );
+        }
+
     }
 }

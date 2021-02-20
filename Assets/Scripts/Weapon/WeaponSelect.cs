@@ -6,11 +6,12 @@ public class WeaponSelect : MonoBehaviour
 {
     [SerializeField] Transform weaponDirectory;
     private List<Weapon> weapons = new List<Weapon>();
-    private int activeWeaponIndex = 0;
+    private int activeWeaponIndex = 0;  
 
     void Start()
     {
         foreach( Weapon w in GetComponentsInChildren<Weapon>() ){
+            w.gameObject.SetActive(false);
             weapons.Add(w);
         }
 
