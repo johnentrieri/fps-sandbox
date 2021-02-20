@@ -17,17 +17,25 @@ public class Weapon : MonoBehaviour
     private Ammo ammo;
     private Camera FPSCamera;
     private bool isReloading = false;
+    private Animator animator;
 
     void Start() {
         FPSCamera = Camera.main;
         ammo = GetComponentInParent<Ammo>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (Input.GetAxis("Fire1") == 1) {
             if (ammo.GetAmmoAmount(ammoType) > 0) {
-                Shoot();
+                if (animator != null) {
+                    if ( !animator.GetBool("shoot") && !isReloading ) {
+                        animator.SetBool("shoot",true);
+                    }
+                } else {
+                    Shoot();
+                }
             }
         }
     }
@@ -48,6 +56,7 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator Reload() {
         isReloading = true;
+        if (animator != null) { animator.SetBool("shoot",false); }
         yield return new WaitForSeconds(timeBetweenShots);
         isReloading = false;
     }
@@ -76,7 +85,7 @@ public class Weapon : MonoBehaviour
     }
 
     private void PlayMuzzleFlash() {
-        muzzleFlashVFX.Play();
+        if (muzzleFlashVFX != null) { muzzleFlashVFX.Play(); }        
     }
 
     private void PlayDefaultHitEffect(Vector3 location) {

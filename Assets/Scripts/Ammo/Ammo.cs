@@ -29,6 +29,10 @@ public class Ammo : MonoBehaviour
         ammoSlot.ammoAmount -= ammoDec;
         if (ammoSlot.ammoAmount < 0) { ammoSlot.ammoAmount = 0; }
 
+        if (ammoSlot.ammoType == AmmoType.Unlimited) { 
+            ammoSlot.ammoAmount = ammoSlot.maxAmount;
+        }
+
         return true;
     }
 
