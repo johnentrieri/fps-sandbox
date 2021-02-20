@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int HP = 10;
+    [SerializeField] int value = 10;
     [SerializeField] float chaseRange = 10.0f;
     [SerializeField] float turnSpeed = 30.0f;
     [SerializeField] float disengageDistance = 30.0f;
@@ -51,6 +52,11 @@ public class Enemy : MonoBehaviour
     public ParticleSystem GetHitEffect() {
         return enemyHitEffect;
     }
+    
+    public int GetValue() {
+        return(value);
+    }
+
     public void Reanimate() {
         HP = startingHP;
         animator.SetTrigger("reanimate");

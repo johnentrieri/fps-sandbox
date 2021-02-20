@@ -8,6 +8,13 @@ public class PlayerUIHandler : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Text weaponName;
     [SerializeField] Text ammoRemaining;
+    [SerializeField] Text wave;
+    [SerializeField] Text scoreboard;
+    private int score = 0;
+
+    void Start() {
+        AddToScore(0);
+    }
 
     public void setUIHealthBar(int HP, int maxHP) {
         float helthPercent = (1.0f * HP) / (1.0f * maxHP);
@@ -20,5 +27,13 @@ public class PlayerUIHandler : MonoBehaviour
     }
     public void SetRemainingAmmo(string ammo) {
         ammoRemaining.text = ammo;
+    }
+    public void AddToScore(int points) {
+        score += points;
+        scoreboard.text = score.ToString();
+    }
+
+    public void SetWave(int waveNum) {
+        wave.text = "Wave " + waveNum.ToString();
     }
 }

@@ -13,9 +13,13 @@ public class EnemyManager : MonoBehaviour
 
     private Queue<GameObject> enemyPool = new Queue<GameObject>();
 
+    private PlayerUIHandler playerUIHandler;
+
     void Start()
     {
+        playerUIHandler = FindObjectOfType<PlayerUIHandler>();
         waveNum = 1;
+        if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
         spawnedEnemies = waveNum * waveNum;
         enemiesRemaining = spawnedEnemies;
         StartCoroutine( StartNextWave() );
@@ -25,6 +29,7 @@ public class EnemyManager : MonoBehaviour
         enemyPool.Enqueue(enemy);
         if( --enemiesRemaining <= 0) {
             waveNum++;
+            if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
             spawnedEnemies = waveNum * waveNum;
             enemiesRemaining = spawnedEnemies;
             StartCoroutine( StartNextWave() );

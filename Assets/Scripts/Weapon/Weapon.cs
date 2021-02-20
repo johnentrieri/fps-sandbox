@@ -79,12 +79,14 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPSCamera.transform.position, FPSCamera.transform.forward, out hit,weaponRange)) {            
             Headshot headshot = hit.transform.GetComponent<Headshot>();
-            Enemy enemy = hit.transform.GetComponentInParent<Enemy>();      
+            Enemy enemy = hit.transform.GetComponentInParent<Enemy>();     
             if (headshot) {
-                int headshotDamage = weaponDamage * headshot.GetHeadshotMultiplier();
-                ProcessEnemyHit(enemy, hit, headshotDamage);
+                int headShotMultiplier = headshot.GetHeadshotMultiplier();
+                if (playerUIHandler != null) { playerUIHandler.AddToScore(enemy.GetValue() * headShotMultiplier); }
+                ProcessEnemyHit(enemy, hit, weaponDamage * headShotMultiplier);
             }else if (enemy) { 
                 ProcessEnemyHit(enemy, hit, weaponDamage);
+                if (playerUIHandler != null) { playerUIHandler.AddToScore(enemy.GetValue()); }
             } else {
                 PlayDefaultHitEffect(hit.point);
             }                    
