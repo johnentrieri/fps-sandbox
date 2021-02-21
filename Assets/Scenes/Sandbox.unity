@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.8
-    agentHeight: 2
-    agentSlope: 55
-    agentClimb: 2
-    ledgeDropHeight: 0
+    agentRadius: 0.25
+    agentHeight: 4
+    agentSlope: 60
+    agentClimb: 4
+    ledgeDropHeight: 10
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.26666668
+    cellSize: 0.083333336
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -2469,9 +2469,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a66b9d3507350449da8e87bdd0f91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8548886728967349601, guid: 5994818f3fd73b948ab33bc7e950e5ea, type: 3}
-  spawnPoints:
-  - {fileID: 0}
+  enemyTypes:
+  - enemyPrefab: {fileID: 8548886728967349601, guid: 5994818f3fd73b948ab33bc7e950e5ea, type: 3}
+    earliestWave: 0
+  - enemyPrefab: {fileID: 8548886728967349601, guid: fa8dddae4ade00548aa3513950cebf43, type: 3}
+    earliestWave: 3
+  - enemyPrefab: {fileID: 8548886728967349601, guid: 41661834293759045b2b156ebb33c653, type: 3}
+    earliestWave: 5
+  - enemyPrefab: {fileID: 8548886728967349601, guid: a193885262bf5a14789e30fedccab024, type: 3}
+    earliestWave: 8
   timeBetweenSpawns: 0.5
   timeBetweenWaves: 1
 --- !u!1 &892434678

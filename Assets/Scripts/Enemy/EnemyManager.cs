@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] EnemySpawnPoint[] spawnPoints;
-    [SerializeField] float timeBetweenSpawns = 1.0f;
-    [SerializeField] float timeBetweenWaves = 5.0f;
-
+    [SerializeField] EnemyType[] enemyTypes; 
+    [SerializeField] float timeBetweenSpawns = 0.5f;
+    [SerializeField] float timeBetweenWaves = 2.0f;
     private int waveNum, spawnedEnemies, enemiesRemaining;
-
-    private Queue<GameObject> enemyPool = new Queue<GameObject>();
-
+    private EnemySpawnPoint[] spawnPoints;
     private PlayerUIHandler playerUIHandler;
     private PickupManager pickupManager;
+    private EnemyType currentWaveType;
+
+    [System.Serializable] class EnemyType {
+        public GameObject enemyPrefab;
+        public int earliestWave; //TODO
+        public Queue<GameObject> enemyPool = new Queue<GameObject>();
+    }
 
     void Start()
     {
@@ -22,14 +25,11 @@ public class EnemyManager : MonoBehaviour
         playerUIHandler = FindObjectOfType<PlayerUIHandler>();
         pickupManager = FindObjectOfType<PickupManager>();
         waveNum = 1;
-        if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
-        spawnedEnemies = waveNum;
-        enemiesRemaining = spawnedEnemies;
         StartCoroutine( StartNextWave() );
     }
 
     public void EnemyDeathHandler(GameObject enemy) {
-        enemyPool.Enqueue(enemy);
+        currentWaveType.enemyPool.Enqueue(enemy);
         if( --enemiesRemaining <= 0) {
             waveNum++;
             StartCoroutine( StartNextWave() );
@@ -37,6 +37,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private IEnumerator StartNextWave() {
+        currentWaveType = ChooseEnemyType();
          
         spawnedEnemies = waveNum;
         enemiesRemaining = spawnedEnemies;   
@@ -49,13 +50,21 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator SpawnEnemies() {
         for (int i=0; i < spawnedEnemies; i++) {
             Vector3 spawnPosition = ChooseRandomSpawnPoint().position;
-            if (enemyPool.Count > 0) {
+            if (currentWaveType.enemyPool.Count > 0) {
                 RecycleEnemy(spawnPosition);
             } else {            
-                Instantiate(enemyPrefab,spawnPosition,Quaternion.identity,transform);
+                Instantiate(currentWaveType.enemyPrefab,spawnPosition,Quaternion.identity,transform);
             }
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
+    }
+
+    private EnemyType ChooseEnemyType() {
+        int rngEnemyType = -1;
+        do { rngEnemyType = Random.Range(0,enemyTypes.Length); }
+        while ( enemyTypes[rngEnemyType].earliestWave > waveNum);
+        
+        return( enemyTypes[rngEnemyType] );
     }
 
     private Transform ChooseRandomSpawnPoint() {
@@ -64,7 +73,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void RecycleEnemy(Vector3 newSpawnPosition) {
-        GameObject recycledEnemy = enemyPool.Dequeue();
+        GameObject recycledEnemy = currentWaveType.enemyPool.Dequeue();
         recycledEnemy.SetActive(false);
         recycledEnemy.transform.position = newSpawnPosition;
         recycledEnemy.GetComponent<Enemy>().Reanimate();
