@@ -44,7 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 					CurrentTargetSpeed = ForwardSpeed;
 				}
 #if !MOBILE_INPUT
-	            if (Input.GetKey(RunKey))
+	            //if (Input.GetKey(RunKey))
+                if ( Input.GetButtonDown("Sprint"))
 	            {
 		            CurrentTargetSpeed *= RunMultiplier;
 		            m_Running = true;

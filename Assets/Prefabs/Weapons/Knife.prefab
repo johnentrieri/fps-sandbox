@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f95789343b86e243ba4c7cd14942af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
+  weaponRange: 2.5
   weaponDamage: 5
   timeBetweenShots: 0.5
   ammoPerShot: 1

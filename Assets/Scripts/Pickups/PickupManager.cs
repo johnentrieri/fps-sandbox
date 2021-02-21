@@ -31,7 +31,7 @@ public class PickupManager : MonoBehaviour
     }
 
     public void ProcessPickupsForWave(int waveNum) {
-        SpawnPickups(waveNum*2);
+        SpawnPickups(Mathf.RoundToInt( Mathf.Ceil(waveNum / 2.0f)) );
     }
 
     private void SpawnPickups(int quantity) {
