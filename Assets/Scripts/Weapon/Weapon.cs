@@ -58,6 +58,10 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public AmmoType GetAmmoType() {
+        return ammoType;
+    }
+
     private void Shoot() {
         if (isReloading) { return; }
         ProcessRaycast();

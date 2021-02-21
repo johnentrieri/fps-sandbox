@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 8799094782552946422, guid: 62f41cd4b6c2ea040b77a291bf39cfd4, type: 3}
+  ammoAmount: 4
   rotationSpeed: 180
 --- !u!1001 &436287166411247471
 PrefabInstance:

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] EnemySpawnPoint[] spawnPoints;
     [SerializeField] float timeBetweenSpawns = 1.0f;
     [SerializeField] float timeBetweenWaves = 5.0f;
 
@@ -14,13 +14,16 @@ public class EnemyManager : MonoBehaviour
     private Queue<GameObject> enemyPool = new Queue<GameObject>();
 
     private PlayerUIHandler playerUIHandler;
+    private PickupManager pickupManager;
 
     void Start()
     {
+        spawnPoints = GetComponentsInChildren<EnemySpawnPoint>();
         playerUIHandler = FindObjectOfType<PlayerUIHandler>();
+        pickupManager = FindObjectOfType<PickupManager>();
         waveNum = 1;
         if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
-        spawnedEnemies = waveNum * waveNum;
+        spawnedEnemies = waveNum;
         enemiesRemaining = spawnedEnemies;
         StartCoroutine( StartNextWave() );
     }
@@ -29,14 +32,16 @@ public class EnemyManager : MonoBehaviour
         enemyPool.Enqueue(enemy);
         if( --enemiesRemaining <= 0) {
             waveNum++;
-            if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
-            spawnedEnemies = waveNum * waveNum;
-            enemiesRemaining = spawnedEnemies;
             StartCoroutine( StartNextWave() );
         }
     }
 
-    private IEnumerator StartNextWave() {    
+    private IEnumerator StartNextWave() {
+         
+        spawnedEnemies = waveNum;
+        enemiesRemaining = spawnedEnemies;   
+        if (playerUIHandler != null) { playerUIHandler.SetWave(waveNum); }
+        pickupManager.ProcessPickupsForWave(waveNum);
         yield return new WaitForSeconds(timeBetweenWaves);
         StartCoroutine( SpawnEnemies() ); 
     }
@@ -55,7 +60,7 @@ public class EnemyManager : MonoBehaviour
 
     private Transform ChooseRandomSpawnPoint() {
         int rngSpawn = Random.Range(0,spawnPoints.Length);
-        return spawnPoints[rngSpawn];
+        return spawnPoints[rngSpawn].transform;
     }
 
     private void RecycleEnemy(Vector3 newSpawnPosition) {
